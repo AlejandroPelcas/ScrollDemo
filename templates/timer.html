@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>Timer</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        #timer { font-size: 48px; margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+    <div id="timer">00:00</div>
+    <button onclick="startTimer(60)">Start 1-Minute Timer</button>
+
+    <script>
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const display = document.getElementById('timer');
+
+            const interval = setInterval(() => {
+                minutes = Math.floor(timer / 60);
+                seconds = timer % 60;
+
+                display.textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    display.textContent = "Time's up!";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
